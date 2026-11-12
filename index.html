@@ -2254,31 +2254,36 @@
             <div class="contact-copy">
               <div class="subhead">Перші партнери</div>
               <h2 id="contact-title">Допоможіть створити<br><span class="gradient">SwiftMiles для бізнесу.</span></h2>
-              <p>Розкажіть про потреби вашої компанії. Ми підготуємо основу заявки для обговорення демо або пілотного
-                проєкту.</p>
+              <p>Розкажіть про потреби вашої компанії. Залиште заявку — команда SwiftMiles отримає її електронною поштою
+                та зможе зв’язатися
+                з вами для обговорення демо або пілотного проєкту.</p>
               <div class="contact-points"><span><i aria-hidden="true">✓</i> Обговорення процесу
                   відряджень</span><span><i aria-hidden="true">✓</i> Перевірка ключових гіпотез</span><span><i
                     aria-hidden="true">✓</i> Спільне уточнення B2B-MVP</span></div>
             </div>
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="https://formsubmit.co/marustdan26@gmail.com"
+              method="POST" accept-charset="UTF-8">
+              <input type="hidden" name="_subject" value="SwiftMiles — нова заявка з лендінгу">
+              <input type="hidden" name="_template" value="table">
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"
+                style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
               <div class="field-stack">
-                <div class="field"><label for="contactName">Ваше ім’я</label><input id="contactName" type="text"
-                    autocomplete="name" maxlength="80" placeholder="Ім’я" required></div>
-                <div class="field"><label for="contactEmail">Робоча пошта</label><input id="contactEmail" type="email"
-                    autocomplete="email" maxlength="120" placeholder="name@company.com" required></div>
+                <div class="field"><label for="contactName">Ваше ім’я</label><input id="contactName" name="name"
+                    type="text" autocomplete="name" maxlength="80" placeholder="Ім’я" required></div>
+                <div class="field"><label for="contactEmail">Робоча пошта</label><input id="contactEmail" name="email"
+                    type="email" autocomplete="email" maxlength="120" placeholder="name@company.com" required></div>
                 <div class="field wide"><label for="contactCompany">Назва компанії</label><input id="contactCompany"
-                    type="text" autocomplete="organization" maxlength="120" placeholder="Компанія" required></div>
+                    name="company" type="text" autocomplete="organization" maxlength="120" placeholder="Компанія"
+                    required></div>
                 <div class="field wide"><label for="contactNeed">Що хочете автоматизувати?</label><textarea
-                    id="contactNeed" maxlength="600"
+                    id="contactNeed" name="message" maxlength="600"
                     placeholder="Наприклад: пошук квитків, погодження заявок, звітність..."></textarea></div>
-              </div><button type="submit" class="button button-primary">Підготувати текст заявки <span
-                  aria-hidden="true">↗</span></button>
-              <p class="small-print">Форма працює локально й не надсилає персональні дані. Готовий текст можна
-                скопіювати та надіслати команді обраним каналом.</p>
-              <div class="request-output" id="requestOutput" role="status" aria-live="polite">
-                <h4>Текст для звернення</h4>
-                <pre id="requestText"></pre><button type="button" id="copyRequest">Скопіювати заявку</button>
               </div>
+              <button type="submit" class="button button-primary">Надіслати заявку <span
+                  aria-hidden="true">↗</span></button>
+              <p class="small-print">Натискаючи «Надіслати заявку», ви передаєте введені дані команді SwiftMiles
+                через сервіс FormSubmit для відповіді на ваше звернення. Не додавайте конфіденційних даних.
+              </p>
             </form>
           </div>
         </div>
@@ -2356,19 +2361,6 @@
       }
       byId('plannerForm').addEventListener('submit', e => { e.preventDefault(); if (byId('plannerForm').reportValidity()) updatePlan(); });
       updatePlan();
-      byId('contactForm').addEventListener('submit', e => {
-        e.preventDefault(); if (!e.currentTarget.reportValidity()) return;
-        const name = byId('contactName').value.trim(), company = byId('contactCompany').value.trim(), email = byId('contactEmail').value.trim(), need = byId('contactNeed').value.trim();
-        byId('requestText').textContent = 'Тема: Запит на демо SwiftMiles for Business\n\nВітаємо!\n\nМене звати ' + name + '. Представляю компанію «' + company + '».\nХотіли б обговорити SwiftMiles для корпоративних відряджень.\n\nНаші потреби: ' + (need || 'Автоматизація планування, погодження та контролю бюджету.') + '\n\nКонтакт для зв’язку: ' + email + '\n\nЗ повагою,\n' + name;
-        byId('requestOutput').classList.add('visible');
-        byId('copyRequest').textContent = 'Скопіювати заявку';
-        byId('requestOutput').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
-      });
-      byId('copyRequest').addEventListener('click', async () => {
-        const value = byId('requestText').textContent;
-        try { if (!navigator.clipboard || !window.isSecureContext) throw new Error('Clipboard unavailable'); await navigator.clipboard.writeText(value); byId('copyRequest').textContent = 'Скопійовано ✓'; }
-        catch (_) { const area = document.createElement('textarea'); area.value = value; area.style.position = 'fixed'; area.style.opacity = '0'; document.body.appendChild(area); area.select(); let success = false; try { success = document.execCommand('copy'); } catch (_) { success = false; } area.remove(); byId('copyRequest').textContent = success ? 'Скопійовано ✓' : 'Виділіть і скопіюйте текст вище'; }
-      });
       byId('year').textContent = String(new Date().getFullYear());
     })();
   </script>
