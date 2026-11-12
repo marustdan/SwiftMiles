@@ -1836,6 +1836,33 @@
       }
     }
 
+
+    /* Контактна форма: підтвердження без переходу на інший сайт */
+    .contact-status {
+      margin: 14px 0 0;
+      padding: 13px 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(79, 224, 219, .3);
+      background: rgba(79, 224, 219, .09);
+      color: #bafcf1;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .contact-status[hidden] {
+      display: none !important;
+    }
+
+    .contact-status[data-state="error"] {
+      border-color: rgba(255, 177, 125, .38);
+      background: rgba(242, 133, 74, .1);
+      color: #ffe1c2;
+    }
+
+    .contact-status[data-state="loading"] {
+      color: #d3e7f2;
+    }
+
     /* Google Forms feedback section */
     .feedback-panel {
       border: 1px solid rgba(113, 225, 220, .25);
@@ -2281,6 +2308,7 @@
               </div>
               <button type="submit" class="button button-primary">Надіслати заявку <span
                   aria-hidden="true">↗</span></button>
+              <p id="contactStatus" class="contact-status" role="status" aria-live="polite" hidden></p>
               <p class="small-print">Натискаючи «Надіслати заявку», ви передаєте введені дані команді SwiftMiles
                 через сервіс FormSubmit для відповіді на ваше звернення. Не додавайте конфіденційних даних.
               </p>
@@ -2361,6 +2389,53 @@
       }
       byId('plannerForm').addEventListener('submit', e => { e.preventDefault(); if (byId('plannerForm').reportValidity()) updatePlan(); });
       updatePlan();
+
+      // FormSubmit AJAX: повідомлення про результат показуємо на цій сторінці,
+      // без переходу на FormSubmit та без некоректного посилання «назад».
+      const contactForm = byId('contactForm');
+      const contactStatus = byId('contactStatus');
+      const contactSubmitButton = contactForm.querySelector('button[type="submit"]');
+      const contactButtonLabel = contactSubmitButton.innerHTML;
+      contactForm.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (!contactForm.reportValidity() || contactSubmitButton.disabled) return;
+
+        contactSubmitButton.disabled = true;
+        contactSubmitButton.textContent = 'Надсилаємо…';
+        contactStatus.hidden = false;
+        contactStatus.dataset.state = 'loading';
+        contactStatus.textContent = 'Заявка надсилається. Не закривайте сторінку.';
+
+        try {
+          const fields = Object.fromEntries(new FormData(contactForm).entries());
+          const response = await fetch('https://formsubmit.co/ajax/marustdan26@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(fields)
+          });
+          if (!response.ok) throw new Error('Сервіс тимчасово недоступний. Спробуйте ще раз пізніше.');
+          const data = await response.json();
+          // FormSubmit повертає success як РЯДОК: «false» не можна перевіряти просто if (data.success).
+          if (data.success !== true && data.success !== 'true') {
+            if (/activat|підтвердж|confirm/i.test(String(data.message || ''))) {
+              throw new Error('Адресу для прийому заявок ще потрібно підтвердити через лист від FormSubmit.');
+            }
+            throw new Error('Не вдалося надіслати заявку. Перевірте підключення та повторіть спробу.');
+          }
+          contactStatus.dataset.state = 'success';
+          contactStatus.textContent = 'Дякуємо! Заявку успішно надіслано команді SwiftMiles. Ми зв’яжемося з вами електронною поштою.';
+          contactForm.reset();
+        } catch (error) {
+          contactStatus.dataset.state = 'error';
+          contactStatus.textContent = error instanceof Error
+            ? error.message
+            : 'Виникла помилка під час надсилання. Спробуйте пізніше.';
+        } finally {
+          contactSubmitButton.disabled = false;
+          contactSubmitButton.innerHTML = contactButtonLabel;
+        }
+      });
+
       byId('year').textContent = String(new Date().getFullYear());
     })();
   </script>
