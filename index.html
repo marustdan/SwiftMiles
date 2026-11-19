@@ -1908,6 +1908,851 @@
         border-radius: 10px;
       }
     }
+
+
+    /* ===== SwiftMiles • Trip Studio: interactive three-option planning demo ===== */
+    #demo {
+      position: relative;
+      isolation: isolate;
+    }
+
+    #demo::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0 0 auto;
+      height: 680px;
+      pointer-events: none;
+      background: radial-gradient(ellipse 45% 55% at 10% 23%, rgba(42, 180, 230, .12), transparent 74%), radial-gradient(ellipse 48% 58% at 95% 5%, rgba(61, 221, 198, .09), transparent 72%);
+    }
+
+    #demo .planner-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #7cf2e4;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    #demo .planner-eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: #50e0dc;
+    }
+
+    #demo .planner-stage {
+      overflow: hidden;
+      border: 1px solid rgba(118, 221, 233, .21);
+      border-radius: 28px;
+      background: linear-gradient(150deg, rgba(12, 39, 59, .96), rgba(7, 22, 38, .99));
+      box-shadow: 0 33px 90px rgba(0, 3, 12, .3);
+    }
+
+    #demo .planner-stage-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 19px 28px;
+      border-bottom: 1px solid rgba(170, 225, 239, .11);
+      background: linear-gradient(120deg, rgba(61, 196, 235, .08), rgba(72, 222, 194, .035));
+    }
+
+    #demo .planner-stage-top-left {
+      display: flex;
+      gap: 13px;
+      align-items: center;
+    }
+
+    #demo .planner-app-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(140deg, #2a9cf3, #51e4d1);
+      color: #051c2a;
+      box-shadow: 0 8px 22px rgba(47, 192, 207, .18);
+      font-size: 20px;
+    }
+
+    #demo .planner-stage-top-left strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: -.02em;
+    }
+
+    #demo .planner-stage-top-left small {
+      display: block;
+      color: #95b5c9;
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    #demo .planner-stage-meta {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .06em;
+      color: #86e8dc;
+      background: rgba(79, 218, 215, .08);
+      border: 1px solid rgba(109, 224, 219, .22);
+      padding: 9px 12px;
+      border-radius: 999px;
+    }
+
+    #demo .planner-dot {
+      width: 7px;
+      height: 7px;
+      background: #62e1c5;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(98, 225, 197, .11);
+    }
+
+    #demo .planner-input-panel {
+      padding: 27px 29px 30px;
+    }
+
+    #demo .planner-sectionline {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 21px;
+    }
+
+    #demo .planner-sectionline h3 {
+      font-size: 21px;
+      letter-spacing: -.045em;
+      margin: 0;
+    }
+
+    #demo .planner-sectionline p {
+      font-size: 12px;
+      color: #90aabd;
+      margin: 0;
+    }
+
+    #demo .planner-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    #demo .planner-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+      grid-column: span 3;
+    }
+
+    #demo .planner-field.half {
+      grid-column: span 6;
+    }
+
+    #demo .planner-field label {
+      font-size: 12px;
+      font-weight: 750;
+      color: #c5dfeb;
+    }
+
+    #demo .planner-field label span {
+      color: #5fe5d8;
+      margin-right: 5px;
+    }
+
+    #demo .planner-field input,
+    #demo .planner-field select {
+      display: block;
+      width: 100%;
+      height: 49px;
+      min-width: 0;
+      border-radius: 12px;
+      border: 1px solid #2a4e63;
+      background: #071d30;
+      color: #f2fcff;
+      padding: 0 13px;
+      outline: none;
+      font-size: 14px;
+      line-height: 1.3;
+      transition: border-color .18s, box-shadow .18s;
+    }
+
+    #demo .planner-field select {
+      padding-right: 23px;
+    }
+
+    #demo .planner-field input[type=date] {
+      color-scheme: dark;
+    }
+
+    #demo .planner-field input:focus,
+    #demo .planner-field select:focus {
+      border-color: #5de8db;
+      box-shadow: 0 0 0 3px rgba(76, 213, 216, .1);
+    }
+
+    #demo .planner-field input::placeholder {
+      color: #7497ad;
+      opacity: 1;
+    }
+
+    #demo .planner-priority {
+      margin-top: 23px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    #demo .planner-priority-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #c5dfeb;
+      min-width: 147px;
+    }
+
+    #demo .planner-priority-options {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    #demo .planner-radio {
+      position: relative;
+      cursor: pointer;
+    }
+
+    #demo .planner-radio input {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+
+    #demo .planner-radio span {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid #2a4d62;
+      background: #0a2438;
+      border-radius: 11px;
+      min-height: 38px;
+      padding: 8px 13px;
+      color: #aecaDA;
+      font-weight: 750;
+      font-size: 12px;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    #demo .planner-radio input:checked+span {
+      background: rgba(51, 193, 204, .17);
+      color: #9bfff0;
+      border-color: #4ed6d4;
+    }
+
+    #demo .planner-radio input:focus-visible+span {
+      outline: 3px solid #6ceddf;
+      outline-offset: 3px;
+    }
+
+    #demo .planner-submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding-top: 23px;
+      margin-top: 22px;
+      border-top: 1px solid rgba(178, 224, 241, .1);
+    }
+
+    #demo .planner-action {
+      min-width: 260px;
+      gap: 11px;
+      padding: 16px 22px;
+      min-height: 53px;
+    }
+
+    #demo .planner-helper {
+      font-size: 12px;
+      color: #91afc1;
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    #demo .planner-error {
+      color: #ffd3ba;
+      background: rgba(221, 115, 62, .1);
+      border: 1px solid rgba(255, 173, 130, .23);
+      border-radius: 10px;
+      padding: 13px 15px;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    #demo .planner-results-wrap {
+      margin-top: 29px;
+      scroll-margin-top: 105px;
+    }
+
+    #demo .planner-results-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 19px;
+    }
+
+    #demo .planner-results-top h3 {
+      font-size: clamp(23px, 2.7vw, 31px);
+      letter-spacing: -.055em;
+      margin: 5px 0 7px;
+    }
+
+    #demo .planner-results-top p {
+      font-size: 13px;
+      color: #9bb8cc;
+      margin: 0;
+    }
+
+    #demo .planner-results-tag {
+      border: 1px solid rgba(83, 215, 207, .25);
+      background: rgba(51, 185, 191, .07);
+      border-radius: 999px;
+      color: #8deadd;
+      padding: 9px 13px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    #demo .planner-insights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 18px;
+    }
+
+    #demo .planner-insight {
+      background: #0c2639;
+      border: 1px solid rgba(159, 216, 234, .13);
+      border-radius: 13px;
+      padding: 15px 17px;
+      min-width: 0;
+    }
+
+    #demo .planner-insight small {
+      display: block;
+      font-size: 11px;
+      color: #9bb7c8;
+      margin-bottom: 6px;
+    }
+
+    #demo .planner-insight strong {
+      display: block;
+      font-size: 21px;
+      font-weight: 850;
+      letter-spacing: -.04em;
+    }
+
+    #demo .planner-insight strong.accent {
+      color: #73e6d8;
+    }
+
+    #demo .planner-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      align-items: stretch;
+    }
+
+    #demo .planner-card {
+      min-width: 0;
+      border-radius: 21px;
+      overflow: hidden;
+      border: 1px solid #27465a;
+      background: linear-gradient(168deg, #102e43, #0a2032 76%);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform .18s, border-color .18s, box-shadow .18s;
+    }
+
+    #demo .planner-card:hover {
+      transform: translateY(-3px);
+      border-color: #43829a;
+      box-shadow: 0 17px 45px rgba(0, 7, 15, .22);
+    }
+
+    #demo .planner-card.is-recommended {
+      border-color: #5bdad1;
+      box-shadow: 0 0 0 1px rgba(80, 220, 215, .14), 0 18px 43px rgba(0, 12, 23, .22);
+    }
+
+    #demo .planner-card.is-selected {
+      border-color: #9effe9;
+      box-shadow: 0 0 0 2px rgba(103, 241, 216, .24), 0 18px 45px rgba(3, 20, 32, .3);
+    }
+
+    #demo .planner-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    #demo .planner-card-num {
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .15em;
+      color: #72e6db;
+    }
+
+    #demo .planner-card-tag {
+      font-size: 10px;
+      font-weight: 800;
+      color: #b0fce7;
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: rgba(74, 218, 185, .1);
+      border: 1px solid rgba(107, 226, 207, .22);
+      text-align: right;
+    }
+
+    #demo .planner-card h4 {
+      font-size: 20px;
+      letter-spacing: -.045em;
+      line-height: 1.2;
+      margin: 0 0 7px;
+    }
+
+    #demo .planner-card-desc {
+      font-size: 12px;
+      color: #aac1d1;
+      line-height: 1.55;
+      min-height: 38px;
+      margin: 0 0 20px;
+    }
+
+    #demo .planner-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 17px;
+    }
+
+    #demo .planner-price strong {
+      font-size: clamp(25px, 2.55vw, 33px);
+      font-weight: 900;
+      letter-spacing: -.06em;
+      color: #effdff;
+      line-height: 1.05;
+    }
+
+    #demo .planner-price span {
+      font-size: 11px;
+      color: #8dacbe;
+    }
+
+    #demo .planner-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 13px 0;
+      border-top: 1px solid rgba(195, 235, 245, .1);
+      border-bottom: 1px solid rgba(195, 235, 245, .1);
+      margin-bottom: 15px;
+    }
+
+    #demo .planner-metric small {
+      display: block;
+      color: #89a9bc;
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    #demo .planner-metric b {
+      font-size: 13px;
+      color: #dcebf6;
+    }
+
+    #demo .planner-costlines {
+      display: grid;
+      gap: 9px;
+      margin-bottom: 17px;
+    }
+
+    #demo .planner-costline {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    #demo .planner-costline span {
+      color: #9ab5c6;
+    }
+
+    #demo .planner-costline strong {
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    #demo .planner-budget-flag {
+      font-size: 11px;
+      line-height: 1.45;
+      font-weight: 750;
+      border: 1px solid rgba(102, 224, 190, .18);
+      background: rgba(60, 181, 138, .09);
+      color: #9cf3d9;
+      border-radius: 10px;
+      padding: 11px 10px;
+      margin-bottom: 13px;
+    }
+
+    #demo .planner-budget-flag.over {
+      border-color: rgba(238, 175, 99, .24);
+      background: rgba(210, 144, 61, .1);
+      color: #f6d39e;
+    }
+
+    #demo .planner-includes {
+      color: #9bbbc8;
+      font-size: 11px;
+      line-height: 1.65;
+      margin: 0 0 18px;
+      min-height: 38px;
+    }
+
+    #demo .planner-includes b {
+      color: #d6f5ed;
+    }
+
+    #demo .planner-select-btn {
+      margin-top: auto;
+      border: 1px solid rgba(91, 206, 213, .3);
+      background: rgba(49, 168, 191, .12);
+      color: #a9f8f0;
+      min-height: 44px;
+      padding: 12px 10px;
+      border-radius: 11px;
+      font-size: 12px;
+      font-weight: 850;
+      width: 100%;
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+    }
+
+    #demo .planner-select-btn:hover {
+      background: rgba(52, 190, 204, .22);
+      border-color: #64e5d9;
+    }
+
+    #demo .planner-card.is-selected .planner-select-btn {
+      background: linear-gradient(120deg, #34bbdc, #6ce8d2);
+      color: #07304a;
+      border-color: transparent;
+    }
+
+    #demo .planner-choice {
+      margin-top: 17px;
+      padding: 20px 23px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      background: linear-gradient(110deg, #10344a, #14464a);
+      border: 1px solid rgba(117, 236, 216, .34);
+      border-radius: 17px;
+    }
+
+    #demo .planner-choice[hidden] {
+      display: none;
+    }
+
+    #demo .planner-choice h4 {
+      font-size: 17px;
+      margin: 0 0 5px;
+      letter-spacing: -.02em;
+    }
+
+    #demo .planner-choice p {
+      margin: 0;
+      color: #b3cddd;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    #demo .planner-copy {
+      background: #e3fcf5;
+      color: #06404c;
+      border: 0;
+      padding: 13px 16px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 850;
+      min-height: 43px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    #demo .planner-copy:hover {
+      background: white;
+    }
+
+    #demo .planner-copy-status {
+      font-size: 11px;
+      color: #96f3db;
+      margin-top: 6px;
+    }
+
+    #demo .planner-disclaimer {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+      color: #91aabc;
+      line-height: 1.65;
+      margin-top: 19px;
+    }
+
+    #demo .planner-disclaimer svg {
+      flex: none;
+      margin-top: 2px;
+      color: #63dad2;
+    }
+
+    @media(max-width:1050px) {
+      #demo .planner-field {
+        grid-column: span 6;
+      }
+
+      #demo .planner-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #demo .planner-card:last-child:nth-child(odd) {
+        grid-column: span 2;
+      }
+
+      #demo .planner-card-desc {
+        min-height: 0;
+      }
+    }
+
+    @media(max-width:720px) {
+      #demo .planner-stage-top {
+        padding: 16px 17px;
+      }
+
+      #demo .planner-input-panel {
+        padding: 22px 17px;
+      }
+
+      #demo .planner-sectionline {
+        align-items: start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      #demo .planner-field {
+        grid-column: span 6;
+      }
+
+      #demo .planner-field.half {
+        grid-column: span 12;
+      }
+
+      #demo .planner-priority-title {
+        min-width: 0;
+      }
+
+      #demo .planner-priority {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 11px;
+      }
+
+      #demo .planner-submit-row {
+        align-items: stretch;
+        flex-direction: column-reverse;
+      }
+
+      #demo .planner-action {
+        min-width: 0;
+        width: 100%;
+      }
+
+      #demo .planner-insights {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      #demo .planner-insight {
+        padding: 12px 10px;
+      }
+
+      #demo .planner-insight strong {
+        font-size: 16px;
+      }
+
+      #demo .planner-insight small {
+        font-size: 10px;
+        min-height: 30px;
+      }
+
+      #demo .planner-cards {
+        grid-template-columns: 1fr;
+      }
+
+      #demo .planner-card:last-child:nth-child(odd) {
+        grid-column: auto;
+      }
+
+      #demo .planner-card {
+        padding: 22px;
+      }
+
+      #demo .planner-choice {
+        grid-template-columns: 1fr;
+      }
+
+      #demo .planner-copy {
+        width: 100%;
+      }
+    }
+
+    @media(max-width:430px) {
+      #demo .planner-field {
+        grid-column: span 12;
+      }
+
+      #demo .planner-stage-top-left strong {
+        font-size: 13px;
+      }
+
+      #demo .planner-stage-meta {
+        font-size: 9px;
+      }
+
+      #demo .planner-priority-options {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+
+      #demo .planner-radio span {
+        justify-content: center;
+      }
+
+      #demo .planner-insight strong {
+        font-size: 15px;
+      }
+    }
+
+
+    /* Editable trip request and live planning */
+    #demo .planner-field.full {
+      grid-column: span 12;
+    }
+
+    #demo .planner-field textarea {
+      display: block;
+      width: 100%;
+      min-height: 81px;
+      resize: vertical;
+      border-radius: 12px;
+      border: 1px solid #2a4e63;
+      background: #071d30;
+      color: #f2fcff;
+      padding: 13px;
+      outline: none;
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: inherit;
+    }
+
+    #demo .planner-field textarea:focus {
+      border-color: #5de8db;
+      box-shadow: 0 0 0 3px rgba(76, 213, 216, .1);
+    }
+
+    #demo .planner-field textarea::placeholder {
+      color: #7497ad;
+      opacity: 1;
+    }
+
+    #demo .planner-field-note {
+      font-size: 11px;
+      color: #88a8bc;
+      line-height: 1.5;
+    }
+
+    #demo .planner-auto-hint {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      padding: 13px 15px;
+      background: rgba(53, 194, 195, .09);
+      border: 1px solid rgba(100, 222, 209, .2);
+      border-radius: 12px;
+      color: #b8ebed;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    #demo .planner-auto-hint::before {
+      content: '◎';
+      font-size: 19px;
+      color: #65ddcf;
+      flex: none;
+    }
+
+    #demo .planner-request-summary {
+      margin-top: 5px !important;
+      color: #80dcd2 !important;
+      max-width: 940px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    #demo .planner-results-wrap[hidden] {
+      display: none !important;
+    }
+
+    #demo .planner-field input[aria-invalid="true"] {
+      border-color: #e29f77;
+    }
+
+    #demo .planner-live-blank {
+      padding: 20px;
+      border: 1px dashed #37677e;
+      border-radius: 15px;
+      color: #b4cadd;
+      background: #092036;
+    }
+
+    @media(max-width:720px) {
+      #demo .planner-field.full {
+        grid-column: span 12;
+      }
+    }
   </style>
 </head>
 
@@ -2103,83 +2948,147 @@
     <section class="content-section demo-section" id="demo" aria-labelledby="demo-title">
       <div class="container">
         <div class="section-head">
-          <div class="subhead">Інтерактивний прототип</div>
-          <h2 id="demo-title">Спробуйте планування<br><span class="gradient">корпоративної поїздки.</span></h2>
-          <p class="intro">Змініть параметри — і побачите приклад перевірки вартості відрядження та бюджету компанії.
-          </p>
+          <div class="planner-eyebrow">SwiftMiles Trip Studio · інтерактивне демо</div>
+          <h2 id="demo-title">Один запит. <span class="gradient">Три вдалі рішення.</span></h2>
+          <p class="intro">Вводьте власні міста, дати, кількість людей, бюджет та побажання. Три сценарії
+            перераховуються автоматично, а готовий план можна передати HR.</p>
         </div>
-        <div class="demo-layout">
-          <form class="demo-form" id="plannerForm">
-            <h3>Нова заявка на відрядження</h3>
-            <p class="hint">Заповніть дані для демонстрації роботи майбутньої платформи.</p>
-            <div class="field-stack">
-              <div class="field wide"><label for="tripDestination">Куди прямуєте?</label><select id="tripDestination"
-                  name="destination">
-                  <option value="warsaw">Варшава, Польща</option>
-                  <option value="berlin">Берлін, Німеччина</option>
-                  <option value="lviv">Львів, Україна</option>
-                </select></div>
-              <div class="field"><label for="tripTravelers">Кількість співробітників</label><select id="tripTravelers"
-                  name="travelers">
-                  <option value="1">1 співробітник</option>
-                  <option value="2">2 співробітники</option>
-                  <option value="4">4 співробітники</option>
-                </select></div>
-              <div class="field"><label for="tripLimit">Бюджет поїздки, ₴</label><input id="tripLimit" name="limit"
-                  type="number" min="1000" max="1000000" step="500" value="22000" required inputmode="numeric"></div>
-              <div class="field wide"><label for="tripPriority">Пріоритет компанії</label><select id="tripPriority"
-                  name="priority">
-                  <option value="balanced">Баланс ціни та часу</option>
-                  <option value="economy">Мінімальна вартість</option>
-                  <option value="fast">Мінімум часу в дорозі</option>
-                </select></div>
+        <div class="planner-stage">
+          <div class="planner-stage-top">
+            <div class="planner-stage-top-left">
+              <div class="planner-app-icon" aria-hidden="true">✈</div>
+              <div><strong>Планувальник SwiftMiles</strong><small>Інтерактивний прототип для корпоративних
+                  поїздок</small></div>
             </div>
-            <button type="submit" class="button button-primary">✦ Сформувати демо-план <span
-                aria-hidden="true">→</span></button>
-            <p class="small-print">Це інтерактивний макет: суми умовні. Реальні ціни, бронювання та AI API ще не
-              підключені.</p>
-          </form>
-          <section class="demo-results" aria-labelledby="result-title">
-            <div class="result-top">
-              <div><span class="demo-stamp">SIMULATED · NO LIVE API</span>
-                <h3 id="result-title">Проєкт відрядження</h3>
-                <p>Заявка SM-1042 · приклад для презентації</p>
-              </div><span class="status mint" id="resultStatus">У межах бюджету</span>
+            <div class="planner-stage-meta"><span class="planner-dot" aria-hidden="true"></span> DEMO MODE · без
+              бронювання</div>
+          </div>
+          <div class="planner-input-panel">
+            <div class="planner-sectionline">
+              <h3>Нова поїздка</h3>
+              <p>Усе необхідне — в одному запиті</p>
             </div>
-            <div class="result-body" aria-live="polite" aria-atomic="true">
-              <div class="result-notice" id="budgetNotice"><span aria-hidden="true">✓</span><span>Заявка відповідає
-                  встановленому бюджету</span></div>
-              <div class="result-header">
-                <div>
-                  <h4 id="resultCity">Варшава · 1 співробітник</h4>
-                  <p id="resultScenario">Баланс ціни та часу · демонстраційні розрахунки</p>
-                </div><span class="result-total" id="totalCost">13 500 ₴</span>
+            <form id="plannerForm" class="planner-form">
+              <div class="planner-grid">
+                <div class="planner-field half"><label for="tripOrigin"><span>01</span> Місто відправлення</label><input
+                    id="tripOrigin" name="origin" type="text" list="plannerCities"
+                    placeholder="Введіть місто, наприклад Київ" value="Київ" maxlength="90" autocomplete="off" required>
+                </div>
+                <div class="planner-field half"><label for="tripDestination"><span>02</span> Куди їдемо?</label><input
+                    id="tripDestination" name="destination" type="text" list="plannerCities"
+                    placeholder="Наприклад, Варшава або Прага" value="Варшава" maxlength="90" autocomplete="off"
+                    required></div>
+                <datalist id="plannerCities">
+                  <option value="Київ">
+                  <option value="Одеса">
+                  <option value="Львів">
+                  <option value="Дніпро">
+                  <option value="Харків">
+                  <option value="Ужгород">
+                  <option value="Чернівці">
+                  <option value="Вінниця">
+                  <option value="Івано-Франківськ">
+                  <option value="Тернопіль">
+                  <option value="Луцьк">
+                  <option value="Рівне">
+                  <option value="Миколаїв">
+                  <option value="Запоріжжя">
+                  <option value="Варшава">
+                  <option value="Краків">
+                  <option value="Берлін">
+                  <option value="Прага">
+                  <option value="Відень">
+                  <option value="Будапешт">
+                  <option value="Братислава">
+                  <option value="Кишинів">
+                  <option value="Бухарест">
+                  <option value="Вільнюс">
+                </datalist>
+                <div class="planner-field"><label for="tripStart"><span>03</span> Дата виїзду</label><input
+                    id="tripStart" name="start" type="date" required></div>
+                <div class="planner-field"><label for="tripEnd"><span>04</span> Дата повернення</label><input
+                    id="tripEnd" name="end" type="date" required></div>
+                <div class="planner-field"><label for="tripTravelers"><span>05</span> Кількість людей</label><input
+                    id="tripTravelers" name="travelers" type="number" inputmode="numeric" min="1" max="50" step="1"
+                    value="2" required></div>
+                <div class="planner-field"><label for="tripLimit"><span>06</span> Бюджет команди, ₴</label><input
+                    id="tripLimit" name="limit" type="number" inputmode="numeric" min="1000" max="10000000" step="100"
+                    value="26000" required></div>
+                <div class="planner-field"><label for="tripDistance"><span>07</span> Відстань в один бік,
+                    км</label><input id="tripDistance" name="distance" type="number" inputmode="numeric" min="5"
+                    max="10000" step="1" placeholder="Авто для відомих міст"></div>
+                <div class="planner-field"><label for="tripHotelRate"><span>08</span> Ніч у готелі / особа,
+                    ₴</label><input id="tripHotelRate" name="hotelRate" type="number" inputmode="numeric" min="100"
+                    max="50000" step="50" value="1800" required></div>
+                <div class="planner-field"><label for="tripDailyRate"><span>09</span> Добові / особа, ₴</label><input
+                    id="tripDailyRate" name="dailyRate" type="number" inputmode="numeric" min="0" max="30000" step="50"
+                    value="650" required></div>
+                <div class="planner-field"><label for="tripPurpose"><span>10</span> Мета відрядження</label><input
+                    id="tripPurpose" name="purpose" type="text" maxlength="120" placeholder="Зустріч із клієнтом"
+                    value="Зустріч із партнером"></div>
+                <div class="planner-field full"><label for="tripPreferences"><span>11</span> Побажання до
+                    поїздки</label><textarea id="tripPreferences" name="preferences" rows="2" maxlength="300"
+                    placeholder="Наприклад: тихий готель, без нічних пересадок, поруч із центром"></textarea><small
+                    class="planner-field-note">Напишіть власні умови — вони з’являться в плані для HR.</small></div>
               </div>
-              <div class="cost-breakdown">
-                <div class="cost-row">
-                  <div class="cost-head"><span>Транспорт</span><b id="travelCost">4 200 ₴</b></div>
-                  <div class="bar"><span id="travelBar"></span></div>
-                </div>
-                <div class="cost-row">
-                  <div class="cost-head"><span>Проживання</span><b id="hotelCost">7 800 ₴</b></div>
-                  <div class="bar"><span id="hotelBar"></span></div>
-                </div>
-                <div class="cost-row">
-                  <div class="cost-head"><span>Інші витрати</span><b id="otherCost">1 500 ₴</b></div>
-                  <div class="bar"><span id="otherBar"></span></div>
+              <div id="plannerDistanceHint" class="planner-auto-hint" role="status" aria-live="polite">Для відомих міст
+                відстань оцінюється автоматично. Для будь-якого іншого маршруту введіть кілометри вручну.</div>
+              <div class="planner-priority">
+                <span class="planner-priority-title">Що для вас важливіше?</span>
+                <div class="planner-priority-options" role="radiogroup" aria-label="Пріоритет поїздки">
+                  <label class="planner-radio"><input type="radio" name="tripPriority" value="economy"><span>◈ Заощадити
+                      бюджет</span></label>
+                  <label class="planner-radio"><input type="radio" name="tripPriority" value="balanced" checked><span>✦
+                      Баланс умов і ціни</span></label>
+                  <label class="planner-radio"><input type="radio" name="tripPriority" value="fast"><span>↗ Швидкість і
+                      комфорт</span></label>
                 </div>
               </div>
-              <div class="role-tabs" role="tablist" aria-label="Ролі в компанії"><button type="button" role="tab"
-                  id="tabEmployee" aria-selected="true" aria-controls="roleText"
-                  data-role="employee">Співробітник</button><button type="button" role="tab" id="tabManager"
-                  aria-selected="false" aria-controls="roleText" data-role="manager">Керівник</button><button
-                  type="button" role="tab" id="tabFinance" aria-selected="false" aria-controls="roleText"
-                  data-role="finance">Фінанси</button></div>
-              <div class="role-text" id="roleText" role="tabpanel" aria-labelledby="tabEmployee"><b>Співробітник:</b>
-                створює заявку, переглядає варіанти й бачить її статус.</div>
-              <p class="visually-note">Демо-ціни наведено виключно для ілюстрації логіки продукту.</p>
+              <div id="plannerError" class="planner-error" role="alert" hidden></div>
+              <div class="planner-submit-row">
+                <div class="planner-helper">⚡ Результати оновлюються під час введення. Це модель, а не реальні квитки,
+                  розклади чи бронювання.</div>
+                <button type="submit" class="button button-primary planner-action">✦ Показати три варіанти <span
+                    aria-hidden="true">→</span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="plannerResults" class="planner-results-wrap" aria-labelledby="plannerResultsTitle">
+          <div class="planner-results-top">
+            <div>
+              <div class="planner-eyebrow">Порівняння сценаріїв</div>
+              <h3 id="plannerResultsTitle">Три варіанти вашого відрядження</h3>
+              <p id="plannerRouteSummary">Введіть умови поїздки для розрахунку</p>
+              <p id="plannerRequestSummary" class="planner-request-summary"></p>
             </div>
-          </section>
+            <div class="planner-results-tag">✦ Три варіанти для порівняння</div>
+          </div>
+          <div class="planner-insights" aria-label="Ключові показники поїздки">
+            <div class="planner-insight"><small>Найнижча ціна</small><strong id="plannerMinPrice"
+                class="accent">—</strong></div>
+            <div class="planner-insight"><small>Бюджет компанії</small><strong id="plannerBudget">—</strong></div>
+            <div class="planner-insight"><small>Тривалість відрядження</small><strong id="plannerDuration">—</strong>
+            </div>
+          </div>
+          <div id="plannerCards" class="planner-cards" aria-live="polite" aria-label="Три альтернативи відрядження">
+          </div>
+          <div id="plannerChoice" class="planner-choice" hidden>
+            <div>
+              <h4 id="plannerChoiceTitle">План обрано</h4>
+              <p id="plannerChoiceSummary"></p>
+              <p id="plannerCopyStatus" class="planner-copy-status" role="status"></p>
+            </div>
+            <button type="button" id="plannerCopyButton" class="planner-copy">⧉ Скопіювати план для HR</button>
+          </div>
+          <div class="planner-disclaimer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg><span><b>Важливо:</b> це демоверсія SwiftMiles, а не пошук доступних квитків або готелів. Ціни та
+              тривалість у дорозі розраховані за умовною моделлю з введених параметрів. Для відомих міст відстань
+              приблизна. Це не актуальні ціни, розклади, маршрути чи бронювання.</span></div>
         </div>
       </div>
     </section>
@@ -2290,6 +3199,8 @@
             </div>
             <form class="contact-form" id="contactForm" action="https://formsubmit.co/marustdan26@gmail.com"
               method="POST" accept-charset="UTF-8">
+              <!-- Резервний маршрут, якщо JavaScript вимкнений: повертаємо на сайт проєкту, а не на marustdan.github.io/ -->
+              <input type="hidden" name="_next" value="https://marustdan.github.io/SwiftMiles/?sent=1#contact">
               <input type="hidden" name="_subject" value="SwiftMiles — нова заявка з лендінгу">
               <input type="hidden" name="_template" value="table">
               <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"
@@ -2327,69 +3238,9 @@
     </div>
   </footer>
   <script>
-    (function () {
+    (() => {
       'use strict';
       const byId = id => document.getElementById(id);
-      const menuButton = byId('menuButton');
-      const navLinks = byId('navLinks');
-      const closeMenu = () => { navLinks.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false'); menuButton.setAttribute('aria-label', 'Відкрити меню'); menuButton.textContent = '☰'; };
-      menuButton.addEventListener('click', () => { const open = !navLinks.classList.contains('open'); navLinks.classList.toggle('open', open); menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню'); menuButton.textContent = open ? '✕' : '☰'; });
-      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-      document.addEventListener('click', e => { if (!byId('siteHeader').contains(e.target)) closeMenu(); });
-      const destinations = {
-        warsaw: { name: 'Варшава', travel: 4200, hotel: 7800, other: 1500 },
-        berlin: { name: 'Берлін', travel: 6800, hotel: 11200, other: 1900 },
-        lviv: { name: 'Львів', travel: 1750, hotel: 4200, other: 850 }
-      };
-      const format = new Intl.NumberFormat('uk-UA', { maximumFractionDigits: 0 });
-      const money = n => format.format(n) + ' ₴';
-      const priorities = { balanced: { label: 'Баланс ціни та часу', factor: 1 }, economy: { label: 'Мінімальна вартість', factor: .88 }, fast: { label: 'Мінімум часу в дорозі', factor: 1.12 } };
-      let currentRole = 'employee';
-      const descriptions = {
-        employee: ['Співробітник', 'створює заявку, переглядає варіанти й бачить її статус.'],
-        manager: ['Керівник', 'перевіряє мету відрядження, суму та дотримання бюджетних правил.'],
-        finance: ['Фінанси', 'бачать планові витрати й отримують інформацію для звіту компанії.']
-      };
-      const roleText = byId('roleText');
-      document.querySelectorAll('[data-role]').forEach(button => button.addEventListener('click', () => {
-        currentRole = button.dataset.role;
-        document.querySelectorAll('[data-role]').forEach(el => el.setAttribute('aria-selected', String(el === button)));
-        roleText.replaceChildren();
-        const strong = document.createElement('b'); strong.textContent = descriptions[currentRole][0] + ': ';
-        roleText.append(strong, document.createTextNode(descriptions[currentRole][1]));
-        roleText.setAttribute('aria-labelledby', button.id);
-      }));
-      function updatePlan() {
-        const dest = destinations[byId('tripDestination').value];
-        const count = Number(byId('tripTravelers').value);
-        const limit = Math.max(1000, Number(byId('tripLimit').value) || 1000);
-        const priority = priorities[byId('tripPriority').value];
-        const round100 = x => Math.round(x / 100) * 100;
-        const travel = round100(dest.travel * count * priority.factor);
-        const hotel = round100(dest.hotel * count);
-        const other = round100(dest.other * count);
-        const total = travel + hotel + other;
-        const ok = total <= limit;
-        byId('resultCity').textContent = dest.name + ' · ' + count + ' ' + (count === 1 ? 'співробітник' : 'співробітники');
-        byId('resultScenario').textContent = priority.label + ' · демонстраційні розрахунки';
-        byId('totalCost').textContent = money(total);
-        byId('travelCost').textContent = money(travel);
-        byId('hotelCost').textContent = money(hotel);
-        byId('otherCost').textContent = money(other);
-        [['travelBar', travel], ['hotelBar', hotel], ['otherBar', other]].forEach(([id, val]) => { byId(id).style.width = Math.max(2, (val / total) * 100) + '%'; });
-        const status = byId('resultStatus'), notice = byId('budgetNotice');
-        status.textContent = ok ? 'У межах бюджету' : 'Понад ліміт';
-        status.className = 'status ' + (ok ? 'mint' : 'gold');
-        notice.className = 'result-notice' + (ok ? '' : ' warn');
-        notice.replaceChildren();
-        const icon = document.createElement('span'); icon.setAttribute('aria-hidden', 'true'); icon.textContent = ok ? '✓' : '!';
-        const caption = document.createElement('span'); caption.textContent = ok ? 'Заявка відповідає встановленому бюджету' : 'Перевищення бюджету на ' + money(total - limit) + '. Потрібне додаткове погодження.';
-        notice.append(icon, caption);
-      }
-      byId('plannerForm').addEventListener('submit', e => { e.preventDefault(); if (byId('plannerForm').reportValidity()) updatePlan(); });
-      updatePlan();
-
       // FormSubmit AJAX: повідомлення про результат показуємо на цій сторінці,
       // без переходу на FormSubmit та без некоректного посилання «назад».
       const contactForm = byId('contactForm');
@@ -2408,6 +3259,7 @@
 
         try {
           const fields = Object.fromEntries(new FormData(contactForm).entries());
+          delete fields._next; // redirect застосовується лише до звичайної HTML-форми
           const response = await fetch('https://formsubmit.co/ajax/marustdan26@gmail.com', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -2435,6 +3287,234 @@
           contactSubmitButton.innerHTML = contactButtonLabel;
         }
       });
+
+      // Резервне HTML-надсилання: FormSubmit перенаправляє назад із ?sent=1.
+      if (new URLSearchParams(window.location.search).get('sent') === '1') {
+        contactStatus.hidden = false;
+        contactStatus.dataset.state = 'success';
+        contactStatus.textContent = 'Дякуємо! Вашу заявку надіслано команді SwiftMiles.';
+        window.history.replaceState(null, '', window.location.pathname + window.location.hash);
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      'use strict';
+      const byId = id => document.getElementById(id);
+      const menuButton = byId('menuButton');
+      const navLinks = byId('navLinks');
+      const closeMenu = () => { navLinks.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false'); menuButton.setAttribute('aria-label', 'Відкрити меню'); menuButton.textContent = '☰'; };
+      menuButton.addEventListener('click', () => { const open = !navLinks.classList.contains('open'); navLinks.classList.toggle('open', open); menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню'); menuButton.textContent = open ? '✕' : '☰'; });
+      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+      document.addEventListener('click', e => { if (!byId('siteHeader').contains(e.target)) closeMenu(); });
+
+      // SwiftMiles live demo: modeled scenarios only, no live suppliers or verified journey times.
+      // The visitor controls the route, dates, team size, budget, reference rates and preferences.
+      const demoCityData = [
+        ['Київ', 50.4501, 30.5234, ['київ', 'киев', 'kyiv', 'kiev']],
+        ['Одеса', 46.4825, 30.7233, ['одеса', 'одесса', 'odesa', 'odessa']],
+        ['Львів', 49.8397, 24.0297, ['львів', 'львов', 'lviv', 'lvov']],
+        ['Дніпро', 48.4647, 35.0462, ['дніпро', 'днепр', 'dnipro', 'dnepr']],
+        ['Харків', 49.9935, 36.2304, ['харків', 'харьков', 'kharkiv', 'kharkov']],
+        ['Миколаїв', 46.9750, 31.9946, ['миколаїв', 'николаев', 'mykolaiv', 'nikolaev']],
+        ['Ужгород', 48.6208, 22.2879, ['ужгород', 'uzhhorod', 'uzhgorod']],
+        ['Чернівці', 48.2915, 25.9403, ['чернівці', 'черновцы', 'chernivtsi']],
+        ['Вінниця', 49.2331, 28.4682, ['вінниця', 'винница', 'vinnytsia']],
+        ['Івано-Франківськ', 48.9226, 24.7111, ['івано-франківськ', 'ивано-франковск', 'ivano-frankivsk']],
+        ['Тернопіль', 49.5535, 25.5948, ['тернопіль', 'тернополь', 'ternopil']],
+        ['Луцьк', 50.7472, 25.3254, ['луцьк', 'луцк', 'lutsk']],
+        ['Рівне', 50.6199, 26.2516, ['рівне', 'ровно', 'rivne']],
+        ['Запоріжжя', 47.8388, 35.1396, ['запоріжжя', 'запорожье', 'zaporizhzhia']],
+        ['Варшава', 52.2297, 21.0122, ['варшава', 'warsaw', 'warszawa']],
+        ['Краків', 50.0647, 19.9450, ['краків', 'краков', 'krakow', 'kraków']],
+        ['Берлін', 52.5200, 13.4050, ['берлін', 'берлин', 'berlin']],
+        ['Прага', 50.0755, 14.4378, ['прага', 'prague', 'praha']],
+        ['Відень', 48.2082, 16.3738, ['відень', 'вена', 'vienna', 'wien']],
+        ['Будапешт', 47.4979, 19.0402, ['будапешт', 'budapest']],
+        ['Братислава', 48.1486, 17.1077, ['братислава', 'bratislava']],
+        ['Кишинів', 47.0105, 28.8638, ['кишинів', 'кишинев', 'chișinău', 'chisinau']],
+        ['Бухарест', 44.4268, 26.1025, ['бухарест', 'bucharest', 'bucuresti']],
+        ['Вільнюс', 54.6872, 25.2797, ['вільнюс', 'вильнюс', 'vilnius']]
+      ];
+      const demoNormalize = s => String(s || '').trim().toLocaleLowerCase('uk-UA').replace(/[.]/g, '').replace(/\s+/g, ' ');
+      const demoCityLookup = text => {
+        const value = demoNormalize(text).split(',')[0].trim();
+        return demoCityData.find(city => city[3].some(alias => demoNormalize(alias) === value)) || null;
+      };
+      const demoHaversine = (cityA, cityB) => {
+        const rad = Math.PI / 180;
+        const da = (cityB[1] - cityA[1]) * rad;
+        const dl = (cityB[2] - cityA[2]) * rad;
+        const sin = Math.sin(da / 2) ** 2 + Math.cos(cityA[1] * rad) * Math.cos(cityB[1] * rad) * Math.sin(dl / 2) ** 2;
+        return 6371 * 2 * Math.atan2(Math.sqrt(sin), Math.sqrt(1 - sin));
+      };
+      const demoStyles = [
+        { id: 'economy', number: '01', name: 'Економний', caption: 'Підійде, якщо важливо знизити витрати', tag: 'Мінімальний бюджет', transit: 1.05, fixed: 260, hotel: .78, daily: .84, speed: 49, stops: 2.3, comfort: 'Базовий', transport: 'Бюджетний наземний варіант', lodging: 'Доступне проживання', feature: 'Економія коштів за рахунок простіших умов' },
+        { id: 'balanced', number: '02', name: 'Збалансований', caption: 'Компроміс між витратами та комфортом', tag: 'Найкращий баланс', transit: 1.45, fixed: 520, hotel: 1, daily: 1, speed: 62, stops: 1.5, comfort: 'Стандарт', transport: 'Стандартний наземний варіант', lodging: 'Зручне проживання', feature: 'Оптимальне співвідношення витрат та зручності' },
+        { id: 'fast', number: '03', name: 'Комфортний', caption: 'Пріоритет менших затримок і кращих умов', tag: 'Вищий комфорт', transit: 2.15, fixed: 920, hotel: 1.32, daily: 1.2, speed: 75, stops: 1, comfort: 'Підвищений', transport: 'Комфортний наземний варіант', lodging: 'Покращені умови', feature: 'Умовно менше часу в дорозі' }
+      ];
+      const demoFormat = new Intl.NumberFormat('uk-UA', { maximumFractionDigits: 0 });
+      const demoMoney = value => demoFormat.format(value) + ' ₴';
+      const demoRound = value => Math.round(value / 50) * 50;
+      const demoNightsLabel = n => n + ' ' + ((n % 100 >= 11 && n % 100 <= 14) ? 'ночей' : n % 10 === 1 ? 'ніч' : n % 10 >= 2 && n % 10 <= 4 ? 'ночі' : 'ночей');
+      const demoLocalDate = date => { const d = new Date(date.getTime() - date.getTimezoneOffset() * 60000); return d.toISOString().slice(0, 10); };
+      const demoToday = new Date(), demoStart = new Date(demoToday), demoEnd = new Date(demoToday);
+      demoStart.setDate(demoStart.getDate() + 7);
+      demoEnd.setDate(demoEnd.getDate() + 9);
+      byId('tripStart').value = demoLocalDate(demoStart);
+      byId('tripEnd').value = demoLocalDate(demoEnd);
+      byId('tripStart').min = demoLocalDate(demoToday);
+      byId('tripEnd').min = demoLocalDate(demoToday);
+      let currentDemo = null, chosenDemo = null, liveTimer = null;
+      function demoTripDays(start, end) {
+        if (!start || !end) return NaN;
+        return Math.round((Date.parse(end + 'T12:00:00Z') - Date.parse(start + 'T12:00:00Z')) / 86400000);
+      }
+      function demoPlanOptions() {
+        const originName = byId('tripOrigin').value.trim();
+        const destinationName = byId('tripDestination').value.trim();
+        if (!originName || !destinationName) throw new Error('Введіть місто відправлення та призначення.');
+        const startCity = demoCityLookup(originName), endCity = demoCityLookup(destinationName);
+        if (startCity && endCity && startCity[0] === endCity[0] || demoNormalize(originName) === demoNormalize(destinationName)) throw new Error('Місто відправлення та призначення мають відрізнятися.');
+        const nights = demoTripDays(byId('tripStart').value, byId('tripEnd').value);
+        if (!Number.isFinite(nights) || nights < 1) throw new Error('Оберіть дату повернення пізніше за дату виїзду.');
+        if (nights > 30) throw new Error('Тривалість демопоїздки не може перевищувати 30 днів.');
+        const travelers = Number(byId('tripTravelers').value);
+        const budget = Number(byId('tripLimit').value);
+        const hotelRate = Number(byId('tripHotelRate').value);
+        const dailyRate = Number(byId('tripDailyRate').value);
+        if (!Number.isInteger(travelers) || travelers < 1 || travelers > 50) throw new Error('Кількість людей — від 1 до 50.');
+        if (!Number.isFinite(budget) || budget < 1000 || budget > 10000000) throw new Error('Загальний бюджет — від 1 000 до 10 000 000 грн.');
+        if (!Number.isFinite(hotelRate) || hotelRate < 100 || hotelRate > 50000) throw new Error('Вартість готелю за ніч — від 100 до 50 000 грн.');
+        if (!Number.isFinite(dailyRate) || dailyRate < 0 || dailyRate > 30000) throw new Error('Добові — від 0 до 30 000 грн.');
+        const specified = byId('tripDistance').value.trim();
+        const manualDistance = specified !== '';
+        let distance;
+        if (manualDistance) { distance = Number(specified); if (!Number.isFinite(distance) || distance < 5 || distance > 10000) throw new Error('Введіть відстань від 5 до 10 000 км.'); }
+        else if (startCity && endCity) distance = Math.max(10, Math.round((demoHaversine(startCity, endCity) * 1.27) / 10) * 10);
+        else throw new Error('Для цього маршруту вкажіть орієнтовну відстань в один бік у кілометрах.');
+        const priority = document.querySelector('input[name="tripPriority"]:checked').value;
+        const purpose = byId('tripPurpose').value.trim() || 'Робоча поїздка';
+        const preferences = byId('tripPreferences').value.trim();
+        const options = demoStyles.map(style => {
+          // Purely illustrative rates, separate from live provider prices or actual travel times.
+          const travel = demoRound(travelers * (distance * 2 * style.transit + style.fixed));
+          const hotel = demoRound(travelers * nights * hotelRate * style.hotel);
+          const extra = demoRound(travelers * (nights + 1) * dailyRate * style.daily);
+          const total = travel + hotel + extra;
+          const hours = Math.max(1, Math.round((distance / style.speed + style.stops) * 10) / 10);
+          return { ...style, travel, hotel, extra, total, hours, withinBudget: total <= budget };
+        });
+        return { origin: { name: originName }, dest: { name: destinationName }, travelers, budget, departure: byId('tripStart').value, arrival: byId('tripEnd').value, purpose, preferences, distance, manualDistance, priority, nights, options };
+      }
+      function demoCard(option, plan) {
+        const recommended = plan.priority === option.id;
+        const card = document.createElement('article');
+        card.className = 'planner-card' + (recommended ? ' is-recommended' : '');
+        card.dataset.option = option.id;
+        card.innerHTML = `
+          <div class="planner-card-top"><span class="planner-card-num">ВАРІАНТ ${option.number}</span><span class="planner-card-tag">${recommended ? '✦ Ваш пріоритет' : option.tag}</span></div>
+          <h4>${option.name}</h4><p class="planner-card-desc">${option.caption}</p>
+          <div class="planner-price"><strong>${demoMoney(option.total)}</strong><span>за ${plan.travelers} осіб</span></div>
+          <div class="planner-metrics"><div class="planner-metric"><small>Модельний час, один бік</small><b>≈ ${String(option.hours).replace('.', ',')} год</b></div><div class="planner-metric"><small>Комфорт</small><b>${option.comfort}</b></div></div>
+          <div class="planner-costlines"><div class="planner-costline"><span>Транспорт (туди й назад)</span><strong>${demoMoney(option.travel)}</strong></div><div class="planner-costline"><span>Проживання</span><strong>${demoMoney(option.hotel)}</strong></div><div class="planner-costline"><span>Добові</span><strong>${demoMoney(option.extra)}</strong></div></div>
+          <div class="planner-budget-flag${option.withinBudget ? '' : ' over'}">${option.withinBudget ? '✓ У межах бюджету · залишок ' + demoMoney(plan.budget - option.total) : '↗ Перевищення бюджету на ' + demoMoney(option.total - plan.budget)}</div>
+          <p class="planner-includes"><b>Умови:</b> ${option.transport} · ${option.lodging}. ${option.feature}.</p>
+          <button type="button" class="planner-select-btn" aria-pressed="false">Обрати цей варіант ↗</button>`;
+        card.querySelector('button').addEventListener('click', () => demoChoose(option.id));
+        return card;
+      }
+      function demoRender(plan) {
+        currentDemo = plan;
+        const selected = chosenDemo?.id;
+        chosenDemo = null;
+        byId('plannerChoice').hidden = true;
+        byId('plannerCopyStatus').textContent = '';
+        byId('plannerResults').hidden = false;
+        byId('plannerRouteSummary').textContent = `${plan.origin.name} → ${plan.dest.name} · ${plan.departure} — ${plan.arrival} · ${plan.travelers} осіб · ${plan.distance} км (один бік, модель)`;
+        byId('plannerRequestSummary').textContent = `Мета: ${plan.purpose}` + (plan.preferences ? ' · Побажання: ' + plan.preferences : '');
+        byId('plannerMinPrice').textContent = demoMoney(Math.min(...plan.options.map(x => x.total)));
+        byId('plannerBudget').textContent = demoMoney(plan.budget);
+        byId('plannerDuration').textContent = demoNightsLabel(plan.nights);
+        byId('plannerDistanceHint').textContent = plan.manualDistance ? `Відстань ${plan.distance} км указана вами. Усі три варіанти розраховано за вашим маршрутом і тарифами.` : `Орієнтовна модельна відстань ${plan.distance} км визначена з міст. Для точнішого сценарію можете ввести власну відстань.`;
+        const cards = byId('plannerCards');
+        cards.replaceChildren(...plan.options.map(option => demoCard(option, plan)));
+        if (selected && plan.options.some(option => option.id === selected)) demoChoose(selected);
+      }
+      function demoChoose(optionId) {
+        if (!currentDemo) return;
+        chosenDemo = currentDemo.options.find(option => option.id === optionId);
+        if (!chosenDemo) return;
+        const plan = currentDemo;
+        byId('plannerCards').querySelectorAll('.planner-card').forEach(card => {
+          const active = card.dataset.option === optionId;
+          card.classList.toggle('is-selected', active);
+          const button = card.querySelector('button');
+          button.textContent = active ? '✓ Варіант обрано' : 'Обрати цей варіант ↗';
+          button.setAttribute('aria-pressed', String(active));
+        });
+        byId('plannerChoice').hidden = false;
+        byId('plannerChoiceTitle').textContent = '✓ Обрано план «' + chosenDemo.name + '»';
+        byId('plannerChoiceSummary').textContent = `${plan.origin.name} → ${plan.dest.name} · ${demoNightsLabel(plan.nights)} · ${plan.travelers} осіб · ${demoMoney(chosenDemo.total)}. План можна скопіювати для погодження з HR.`;
+        byId('plannerCopyStatus').textContent = '';
+      }
+      async function demoCopyPlan() {
+        if (!currentDemo || !chosenDemo) return;
+        const plan = currentDemo, option = chosenDemo;
+        const summary = [
+          'SwiftMiles — демонстраційний план відрядження',
+          'Маршрут: ' + plan.origin.name + ' → ' + plan.dest.name,
+          'Дати: ' + plan.departure + ' — ' + plan.arrival,
+          'Відстань (в один бік, модель): ' + plan.distance + ' км',
+          'Мета: ' + plan.purpose,
+          'Побажання: ' + (plan.preferences || 'не зазначені'),
+          'Кількість співробітників: ' + plan.travelers,
+          'Бюджет: ' + demoMoney(plan.budget),
+          'Обраний сценарій: ' + option.name,
+          'Транспорт: ' + demoMoney(option.travel),
+          'Проживання: ' + demoMoney(option.hotel),
+          'Добові: ' + demoMoney(option.extra),
+          'Разом: ' + demoMoney(option.total),
+          option.withinBudget ? 'У межах бюджету' : 'Перевищення: ' + demoMoney(option.total - plan.budget),
+          'УВАГА: умовна фінансова модель. Не є цінами постачальників, розкладом чи бронюванням.'
+        ].join('\n');
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(summary);
+          else { const field = document.createElement('textarea'); field.value = summary; field.setAttribute('readonly', ''); field.style.position = 'fixed'; field.style.opacity = '0'; document.body.appendChild(field); field.select(); const copied = document.execCommand('copy'); field.remove(); if (!copied) throw new Error('Clipboard unavailable'); }
+          byId('plannerCopyStatus').textContent = 'План скопійовано. Його можна вставити в лист або повідомлення HR.';
+        } catch (error) { byId('plannerCopyStatus').textContent = 'Копіювання недоступне. Спробуйте браузер з HTTPS.'; }
+      }
+      function demoRefresh(scroll = false) {
+        const alert = byId('plannerError');
+        try {
+          const plan = demoPlanOptions();
+          alert.hidden = true; alert.textContent = '';
+          demoRender(plan);
+          if (scroll) byId('plannerResults').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        } catch (error) {
+          currentDemo = null; chosenDemo = null;
+          byId('plannerResults').hidden = true;
+          byId('plannerChoice').hidden = true;
+          alert.textContent = error.message || 'Уточніть параметри відрядження.';
+          alert.hidden = false;
+          byId('plannerDistanceHint').textContent = 'Якщо місто не в списку підказок, введіть приблизну відстань у кілометрах. Вона визначає транспортні витрати та умовний час.';
+        }
+      }
+      byId('plannerCopyButton').addEventListener('click', demoCopyPlan);
+      byId('plannerForm').addEventListener('input', event => {
+        if (!event.target.matches('input,textarea,select')) return;
+        clearTimeout(liveTimer);
+        liveTimer = setTimeout(() => demoRefresh(false), 150);
+      });
+      byId('plannerForm').addEventListener('change', () => { clearTimeout(liveTimer); demoRefresh(false); });
+      byId('plannerForm').addEventListener('submit', event => {
+        event.preventDefault();
+        clearTimeout(liveTimer);
+        if (!event.currentTarget.reportValidity()) return;
+        demoRefresh(true);
+      });
+      demoRefresh(false);
 
       byId('year').textContent = String(new Date().getFullYear());
     })();
